@@ -13,17 +13,7 @@ public class User {
 	private String userId = null;
 	private String userName = null;
 	private String password = null;
-	private String message = null;
 	
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	public String getUserId() {
-		return userId;
-	}
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}

@@ -14,7 +14,7 @@ public class RevenueServiceImpl implements IRevenueService{
 	UserRepository userRepository;
 	
 	public User loginApi(User user){
-		User userNew = userRepository.findByUserName(user.getUserName());
+		User userNew = userRepository.findByUserName(user.getUserName().trim());
 		if (userNew==null) {
 			throw new BadArgumentException(Constants.USER_NOT_EXIST);
 		}else if (!userNew.getPassword().equals(user.getPassword())) {

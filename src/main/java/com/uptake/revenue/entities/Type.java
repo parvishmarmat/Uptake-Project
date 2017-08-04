@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * Types of revenue entry.
  */
+@Document(collection = "types")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Type {
 

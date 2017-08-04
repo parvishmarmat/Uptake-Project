@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * Represents meta section of JSON API output
- * @author PM00474968
+ * @author Parvish Marmat
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MetaInfo {

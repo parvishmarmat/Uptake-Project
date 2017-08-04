@@ -8,10 +8,7 @@
  *******************************************************/
 package com.uptake.revenue.repository;
 
-import java.util.List;
-
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +18,6 @@ import com.uptake.revenue.entities.User;
 @Repository
 public interface UserRepository extends MongoRepository<User, String>{
   
-  public User findByUserName(String userName);
+  public User findByUsername(String username);
   
 }

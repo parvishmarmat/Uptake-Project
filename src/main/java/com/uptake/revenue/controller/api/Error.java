@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * Represents error section of JSON API output specification
- * @author PM00474968
+ * @author Parvish Marmat
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Error {

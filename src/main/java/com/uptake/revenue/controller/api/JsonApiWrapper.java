@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 /**
  * Represents output document according to JSON API output specification
  * @param <T>
- * @author PM00474968
+ * @author Parvish Marmat
  */
 @JsonInclude(Include.NON_NULL)
 public class JsonApiWrapper<T> {

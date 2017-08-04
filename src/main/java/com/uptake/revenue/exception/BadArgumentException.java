@@ -1,11 +1,13 @@
 package com.uptake.revenue.exception;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * Exception to be thrown by REST controllers when input argument(s) is not
  * proper
  */
+@ResponseStatus(code=HttpStatus.BAD_REQUEST)
 public class BadArgumentException extends BaseRuntimeException {
 
     public BadArgumentException() {
@@ -13,10 +15,10 @@ public class BadArgumentException extends BaseRuntimeException {
 
     public BadArgumentException(String message) {
         super(message);
-        status = HttpStatus.BAD_REQUEST.value();
+        //status = HttpStatus.BAD_REQUEST.value();
     }
     
-    public BadArgumentException(Throwable cause) {
+    /*public BadArgumentException(Throwable cause) {
         super(cause);
         status = HttpStatus.BAD_REQUEST.value();
     }
@@ -47,5 +49,5 @@ public class BadArgumentException extends BaseRuntimeException {
                                 Throwable cause) {
         super(status, code, title, selfUrl, message, cause);
     }
-
+*/
 }

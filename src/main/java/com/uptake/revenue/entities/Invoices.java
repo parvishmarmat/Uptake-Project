@@ -1,11 +1,15 @@
 package com.uptake.revenue.entities;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * Invoice detail of the customer.
+ * 
  */
+@Document(collection = "invoices")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Invoice {
+public class Invoices {
 
 	private String customerName = null;
 	private String amount = null;

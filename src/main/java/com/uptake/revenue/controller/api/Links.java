@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * Represents links section of JSON API output specification
- * @author PM00474968
+ * @author Parvish Marmat
  */
 @JsonInclude(Include.NON_NULL)
 public class Links {

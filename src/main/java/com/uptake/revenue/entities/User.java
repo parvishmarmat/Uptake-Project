@@ -1,7 +1,12 @@
 package com.uptake.revenue.entities;
 
+import java.util.Date;
+
+import org.joda.time.DateTime;
+//import org.joda.time.format.DateTimeFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
@@ -21,6 +26,24 @@ public class User {
 	private String contact = null;
 	private String address = null;
 	
+	//@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+	private DateTime createdDate = new DateTime();
+	
+	@DateTimeFormat(style="MM/dd/yyyy")
+	private Date date = new Date();
+	
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public DateTime getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(DateTime createdDate) {
+		this.createdDate = createdDate;
+	}
 	public String getFirstname() {
 		return firstname;
 	}

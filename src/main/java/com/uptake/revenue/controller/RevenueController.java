@@ -79,12 +79,12 @@ public class RevenueController extends BaseController {
 	@ApiOperation(value = " Revenue Page ", response = Revenue.class)
 	@RequestMapping(value = "/revenue", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public JsonApiWrapper<User> login(@ApiIgnore UriComponentsBuilder builder, @RequestBody Revenue revenue,
+	public JsonApiWrapper<Revenue> revenue(@ApiIgnore UriComponentsBuilder builder, @RequestBody Revenue revenue,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		checkArguments(revenue.getUser().trim());
+		checkArguments(revenue.getUserid().trim());
 
-		Revenue newRevenue = revenueService.revenueApi(revenue);
+		Revenue newRevenue = revenueService.revenueApi(revenue.getUserid());
 
 		checkArguments(newRevenue);
 
@@ -93,4 +93,5 @@ public class RevenueController extends BaseController {
 
 		return new JsonApiWrapper(newRevenue, getSelfLink(request), Arrays.asList(l1));
 	}
+	
 }

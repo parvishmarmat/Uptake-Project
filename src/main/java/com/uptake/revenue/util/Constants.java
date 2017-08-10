@@ -18,4 +18,7 @@ public interface Constants {
 	static final String USER_NOT_EXIST = "User does not exist";
 	static final String WRONG_PASSWORD = "Password is wrong";
 	static final String DATA_NOT_EXIST = "Data is not available for the user";
+	
+	static final String REVENUE_COLLECTION = "revenue";
+	static final String USER_COLLECTION = "user";
 }

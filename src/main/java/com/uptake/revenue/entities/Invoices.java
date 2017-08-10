@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Invoice detail of the customer.
  * 
  */
-@Document(collection = "invoices")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Invoices {
 

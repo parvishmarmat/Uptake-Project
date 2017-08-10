@@ -4,8 +4,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.uptake.revenue.util.Constants;
 
-@Document(collection = "revenue_new")
+@Document(collection = Constants.REVENUE_COLLECTION)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TotalRevenue {
 	

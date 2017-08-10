@@ -12,6 +12,7 @@ import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 import java.util.List;
 
 import com.uptake.revenue.entities.TotalRevenue;
+import com.uptake.revenue.util.Constants;
 
 @Component
 @Repository
@@ -24,7 +25,7 @@ public class RevenueRepositoryImpl implements RevenueRepositoryCustom {
 	public String getRevenueByDateRange(String userId, String firstDate, String lastDate) {
 		Aggregation agg = newAggregation(match(Criteria.where("date").gte(firstDate).lte(lastDate)),
 				match(Criteria.where("userid").is(userId)), group(userId).sum("revenue").as("totalRevenue"));
-		AggregationResults<TotalRevenue> result = mongoTemplate.aggregate(agg, "revenue_new", TotalRevenue.class);
+		AggregationResults<TotalRevenue> result = mongoTemplate.aggregate(agg, Constants.REVENUE_COLLECTION, TotalRevenue.class);
 		List<TotalRevenue> list = result.getMappedResults();
 		return list.get(0).getTotalRevenue();
 	}

@@ -171,7 +171,7 @@ public class RevenueServiceImpl implements IRevenueService {
 		 * monthRevenue.setType(typeList);
 		 */
 
-		List<Customer> listOfCustomer = revenueRepository.findCustomerByUserIdAndType(userId, fDateOfMonth.toString(),
+		List<Customer> listOfCustomer = revenueRepository.findCustomersByUserIdAndDate(userId, fDateOfMonth.toString(),
 				lDateOfMonth.toString());
 		monthRevenue.setCustomers(listOfCustomer);
 

@@ -12,5 +12,5 @@ public interface RevenueRepositoryCustom {
 	String findRevenueByDateRange(String userId, String firstDate, String lastDate);
 	String findRevenueByYear(String userId, String firstDate, String lastDate);
 	String findRevenueByType(String userId, String firstDate, String lastDate, String type);
-	List<Customer> findCustomerByUserIdAndType(String userId,String firstDate,String lastDate);
+	List<Customer> findCustomersByUserIdAndDate(String userId,String firstDate,String lastDate);
 }

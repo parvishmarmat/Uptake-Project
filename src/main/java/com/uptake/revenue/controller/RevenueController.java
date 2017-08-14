@@ -145,7 +145,7 @@ public class RevenueController extends BaseController {
 	@ApiOperation(value = " Revenue Month-to-Date Page ", response = MonthRevenue.class)
 	@RequestMapping(value = "/revenueMonthToDate", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public JsonApiWrapper<MonthRevenue> revenueForMonth(@ApiIgnore UriComponentsBuilder builder,
+	public JsonApiWrapper<MonthRevenue> revenueMonthToDate(@ApiIgnore UriComponentsBuilder builder,
 			@RequestBody MonthRevenue monthRevenue, HttpServletRequest request, HttpServletResponse response)
 					throws Exception {
 

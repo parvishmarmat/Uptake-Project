@@ -66,7 +66,7 @@ public class RevenueRepositoryImpl implements RevenueRepositoryCustom {
 	}
 
 	@Override
-	public List<Customer> findCustomerByUserIdAndType(String userId, String firstDate, String lastDate) {
+	public List<Customer> findCustomersByUserIdAndDate(String userId, String firstDate, String lastDate) {
 		Aggregation aggType = newAggregation(
 				match(Criteria.where("date").gte(firstDate).lte(lastDate).and("userid").is(userId)));
 		AggregationResults<Customer> result = mongoTemplate.aggregate(aggType, Constants.REVENUE_COLLECTION,

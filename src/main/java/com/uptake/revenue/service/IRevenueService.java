@@ -19,5 +19,6 @@ public interface IRevenueService {
 	User loginApi(User user);
 	Revenue revenueApi(String userId);
 	MonthRevenue monthRevenueApi(String userId); 
+	MonthRevenue quarterRevenueApi(String userId);
 	YearRevenue yearRevenueApi(String userId);
 }

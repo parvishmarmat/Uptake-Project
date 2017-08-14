@@ -134,45 +134,41 @@ public class RevenueServiceImpl implements IRevenueService {
 		Customer customer = rRepo.findCurrencyByUserid(userId);
 		monthRevenue.setCurrency(customer.getCurrency());
 
-		/*
-		 * Type typeSales = new Type(); typeSales.setType(Constants.TYPE_SALES);
-		 * String salesRevenue = revenueRepository.findRevenueByType(userId,
-		 * fDateOfMonth.toString(), lDateOfMonth.toString(),
-		 * Constants.TYPE_SALES); typeSales.setRevenue(salesRevenue);
-		 * 
-		 * Type typeRental = new Type();
-		 * typeRental.setType(Constants.TYPE_RENTAL); String rentalRevenue =
-		 * revenueRepository.findRevenueByType(userId, fDateOfMonth.toString(),
-		 * lDateOfMonth.toString(), Constants.TYPE_RENTAL);
-		 * typeRental.setRevenue(rentalRevenue);
-		 * 
-		 * Type typeLabor = new Type(); typeLabor.setType(Constants.TYPE_LABOR);
-		 * String laborRevenue = revenueRepository.findRevenueByType(userId,
-		 * fDateOfMonth.toString(), lDateOfMonth.toString(),
-		 * Constants.TYPE_LABOR); typeLabor.setRevenue(laborRevenue);
-		 * 
-		 * Type typeParts = new Type(); typeParts.setType(Constants.TYPE_PARTS);
-		 * String partsRevenue = revenueRepository.findRevenueByType(userId,
-		 * fDateOfMonth.toString(), lDateOfMonth.toString(),
-		 * Constants.TYPE_PARTS); typeParts.setRevenue(partsRevenue);
-		 * 
-		 * int totalRevenue = Integer.parseInt(salesRevenue) +
-		 * Integer.parseInt(rentalRevenue) + Integer.parseInt(laborRevenue) +
-		 * Integer.parseInt(partsRevenue);
-		 * monthRevenue.setTotalRevenue(String.valueOf(totalRevenue));
-		 * 
-		 * Customer customer = rRepo.findCurrencyByUserid(userId);
-		 * monthRevenue.setCurrency(customer.getCurrency());
-		 * 
-		 * List<Type> typeList = new ArrayList<Type>(); typeList.add(typeSales);
-		 * typeList.add(typeRental); typeList.add(typeLabor);
-		 * typeList.add(typeParts);
-		 * 
-		 * monthRevenue.setType(typeList);
-		 */
-
 		List<Customer> listOfCustomer = revenueRepository.findCustomersByUserIdAndDate(userId, fDateOfMonth.toString(),
 				lDateOfMonth.toString());
+		monthRevenue.setCustomers(listOfCustomer);
+
+		return monthRevenue;
+	}
+	
+	@Override
+	public MonthRevenue quarterRevenueApi(String userId) {
+
+		MonthRevenue monthRevenue = new MonthRevenue();
+		monthRevenue.setUserid(userId);
+
+		DateTime dateT = new DateTime();
+		// get first date and last date of the Quarter of the current
+		// month(Quarter-to-Date).
+		Date fdateQuarter = getQuarterStartDate(dateT);
+		Date ldateQuarter = getQuarterEndDate(dateT);
+		Long fDateOfQuarter = getFormattedDate(fdateQuarter).getTime() / 1000;
+		Long lDateOfQuarter = getFormattedDate(ldateQuarter).getTime() / 1000;
+
+		List<Type> typeList = listOfTypeBasedRevenue(userId, fDateOfQuarter.toString(), lDateOfQuarter.toString());
+		monthRevenue.setType(typeList);
+
+		int totalRevenue = 0;
+		for (int i = 0; i < typeList.size(); i++) {
+			totalRevenue = totalRevenue + Integer.parseInt(typeList.get(i).getRevenue());
+		}
+		monthRevenue.setTotalRevenue(String.valueOf(totalRevenue));
+
+		Customer customer = rRepo.findCurrencyByUserid(userId);
+		monthRevenue.setCurrency(customer.getCurrency());
+
+		List<Customer> listOfCustomer = revenueRepository.findCustomersByUserIdAndDate(userId, fDateOfQuarter.toString(),
+				lDateOfQuarter.toString());
 		monthRevenue.setCustomers(listOfCustomer);
 
 		return monthRevenue;

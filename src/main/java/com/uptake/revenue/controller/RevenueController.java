@@ -131,7 +131,7 @@ public class RevenueController extends BaseController {
 
 	/**
 	 * This REST API is designed to get the revenue of the current Month
-	 * (Month-to-Date)and all previous year based on the user.
+	 * (Month-to-Date).
 	 * 
 	 * @param monthRevenue
 	 *            This is the only request parameter.
@@ -155,8 +155,40 @@ public class RevenueController extends BaseController {
 
 		checkArguments(newMonthRevenue);
 
-		String tmp = builder.path("/revenueForMonth").build().toString();
-		Link l1 = new Link(tmp, "RevenueForMonth Detail");
+		String tmp = builder.path("/revenueMonthToDate").build().toString();
+		Link l1 = new Link(tmp, "Revenue Month-to-Date Detail");
+
+		return new JsonApiWrapper(newMonthRevenue, getSelfLink(request), Arrays.asList(l1));
+	}
+	
+	/**
+	 * This REST API is designed to get the revenue of the current Quarter
+	 * (Quarter-to-Date).
+	 * 
+	 * @param quarterRevenue
+	 *            This is the only request parameter.
+	 * @param request
+	 *            This parameter is passed by the spring container.
+	 * @param response
+	 *            This parameter is passed by the spring container.
+	 * @return returns the QuarterRevenue object
+	 * @throws Exception
+	 */
+	@ApiOperation(value = " Revenue Quarter-to-Date Page ", response = MonthRevenue.class)
+	@RequestMapping(value = "/revenueQuarterToDate", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public JsonApiWrapper<MonthRevenue> revenueQuarterToDate(@ApiIgnore UriComponentsBuilder builder,
+			@RequestBody MonthRevenue quarterRevenue, HttpServletRequest request, HttpServletResponse response)
+					throws Exception {
+
+		checkArguments(quarterRevenue.getUserid().trim());
+
+		MonthRevenue newMonthRevenue = revenueService.quarterRevenueApi(quarterRevenue.getUserid());
+
+		checkArguments(newMonthRevenue);
+
+		String tmp = builder.path("/revenueQuarterToDate").build().toString();
+		Link l1 = new Link(tmp, "Revenue Quarter-to-Date Detail");
 
 		return new JsonApiWrapper(newMonthRevenue, getSelfLink(request), Arrays.asList(l1));
 	}

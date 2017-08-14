@@ -1,9 +1,16 @@
 package com.uptake.revenue.repository;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
+
+import com.uptake.revenue.entities.Customer;
 
 @Component
 public interface RevenueRepositoryCustom {
 	
-	String getRevenueByDateRange(String userId, String firstDate, String lastDate);
+	String findRevenueByDateRange(String userId, String firstDate, String lastDate);
+	String findRevenueByYear(String userId, String firstDate, String lastDate);
+	String findRevenueByType(String userId, String firstDate, String lastDate, String type);
+	List<Customer> findCustomerByUserIdAndType(String userId,String firstDate,String lastDate);
 }

@@ -1,14 +1,16 @@
 package com.uptake.revenue.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Revenue {
 	
 	private String userid = null;
-	private String monthToDate = null;
-	private String quarterToDate = null;
-	private String yearToDate = null;
+	private String currency = null;
+	List<DateBasedRevenue> revenue = new ArrayList<DateBasedRevenue>();
 	
 	public String getUserid() {
 		return userid;
@@ -16,23 +18,17 @@ public class Revenue {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
-	public String getMonthToDate() {
-		return monthToDate;
+	public String getCurrency() {
+		return currency;
 	}
-	public void setMonthToDate(String monthToDate) {
-		this.monthToDate = monthToDate;
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
-	public String getQuarterToDate() {
-		return quarterToDate;
+	public List<DateBasedRevenue> getRevenue() {
+		return revenue;
 	}
-	public void setQuarterToDate(String quarterToDate) {
-		this.quarterToDate = quarterToDate;
-	}
-	public String getYearToDate() {
-		return yearToDate;
-	}
-	public void setYearToDate(String yearToDate) {
-		this.yearToDate = yearToDate;
+	public void setRevenue(List<DateBasedRevenue> revenue) {
+		this.revenue = revenue;
 	}
 	
 }

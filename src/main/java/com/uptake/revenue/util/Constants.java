@@ -21,4 +21,9 @@ public interface Constants {
 	
 	static final String REVENUE_COLLECTION = "revenue";
 	static final String USER_COLLECTION = "user";
+	
+	static final String TYPE_SALES = "Sales";
+	static final String TYPE_RENTAL = "Rental";
+	static final String TYPE_LABOR = "Labor";
+	static final String TYPE_PARTS = "Parts";
 }

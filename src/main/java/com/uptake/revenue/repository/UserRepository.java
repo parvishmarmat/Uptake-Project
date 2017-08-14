@@ -1,9 +1,9 @@
 /*******************************************************
  * Copyright (C) 2015-2016 TechMahindra
  * 
- * This file is part of KafkaAdminAPI-SpringBoot.
+ * This file is part of InvoiceAndRevenue-SpringBoot.
  * 
- * KafkaAdminAPI-SpringBoot can not be copied and/or distributed without the express
+ * InvoiceAndRevenue-SpringBoot can not be copied and/or distributed without the express
  * permission.
  *******************************************************/
 package com.uptake.revenue.repository;

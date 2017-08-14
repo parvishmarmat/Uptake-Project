@@ -13,7 +13,14 @@ public class TotalRevenue {
 	@Id
 	private String userid = null;
 	private String totalRevenue = null;
+	private String currency = null;
 	
+	public String getCurrency() {
+		return currency;
+	}
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
 	public String getTotalRevenue() {
 		return totalRevenue;
 	}

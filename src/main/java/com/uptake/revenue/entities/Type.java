@@ -1,44 +1,25 @@
 package com.uptake.revenue.entities;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * Types of revenue entry.
  */
-@Document(collection = "types")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Type {
 
-	private String sales = null;
-	private String rental = null;
-	private String parts = null;
-	private String labor = null;
+	private String type = null;
+	private String revenue = null;
 	
-	public String getSales() {
-		return sales;
+	public String getType() {
+		return type;
 	}
-	public void setSales(String sales) {
-		this.sales = sales;
+	public void setType(String type) {
+		this.type = type;
 	}
-	public String getRental() {
-		return rental;
+	public String getRevenue() {
+		return revenue;
 	}
-	public void setRental(String rental) {
-		this.rental = rental;
+	public void setRevenue(String revenue) {
+		this.revenue = revenue;
 	}
-	public String getParts() {
-		return parts;
-	}
-	public void setParts(String parts) {
-		this.parts = parts;
-	}
-	public String getLabor() {
-		return labor;
-	}
-	public void setLabor(String labor) {
-		this.labor = labor;
-	}
-	
-	
 }

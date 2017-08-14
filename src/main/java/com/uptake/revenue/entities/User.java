@@ -1,12 +1,7 @@
 package com.uptake.revenue.entities;
 
-import java.util.Date;
-
-import org.joda.time.DateTime;
-//import org.joda.time.format.DateTimeFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.uptake.revenue.util.Constants;

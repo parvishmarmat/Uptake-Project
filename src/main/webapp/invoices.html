@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie ie8"> <![endif]-->
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->  <html> <!--<![endif]-->
+<head>
+    <title>Uptake - Invoices &amp; Revenue</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body ng-app="invoiceRevenueApp" ng-cloak>
+    <div class="main-page-wrapper" ng-controller="invoicesController">
+        <header>
+            <p class="menu"></p>
+            <h3>Invoice &amp; Revenue</h3>
+        </header>
+        <div class="innerContainer">
+            <div class="revenue">
+                <h3 class="innerHeading">Revenue</h3>
+                <div ng-repeat="revenue in revenues.revenue">
+                    <div class="subItem" ng-click="navigateInvoice(revenue.timePeriod)">
+                        <p>{{revenue.timePeriod}}</p>
+                        <p class="big">{{revenue.totalRevenue | currency:''}} <span>{{revenues.currency}}</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="revenue">
+                <h3 class="innerHeading">Projections</h3>
+                <div class="subItem">
+                    <p>Month</p>
+                    <p class="big">250,0000.00</p>
+                </div>
+                <div class="subItem">
+                    <p>Quarter</p>
+                    <p class="big">1,000,0000.00</p>
+                </div>
+                <div class="subItem">
+                    <p>Year</p>
+                    <p class="big">250,0000.00</p>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <footer>
+        <ul>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li class="noRightBorder"><a href="#">Terms of Use</a></li>
+            <li><img src="images/uptake_logo_bottom.jpg" /></li>
+        </ul>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

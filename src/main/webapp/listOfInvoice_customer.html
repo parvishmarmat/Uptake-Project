@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie ie8"> <![endif]-->
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->  <html> <!--<![endif]-->
+<head>
+    <title>Uptake - Invoices &amp; Revenue</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body ng-app="invoiceRevenueApp" ng-cloak>
+    <div class="main-page-wrapper">
+        <header>
+            <a href="javascript:history.back()" class="leftArrow"></a>
+            <h3>Revenue Month-to-Date</h3>
+        </header>
+        <div class="innerContainer" ng-controller="invoicesCustomerController">
+            <div class="chartContainer">
+                <div class="chart">
+                    <p>Total Revenue-to-Date</p>
+                    <p class="price">
+                        {{customers.revenue.amount}} 
+                        <span>{{customers.revenue.currency}}</span>
+                    </p>
+                    <div class="chartArea">
+                         <div id="chart"></div>
+                         <ul>
+                            <li ng-repeat="customer in customers.revenue.types"> {{letterArray[$index]}}. {{customer.type}}</li>
+                         </ul>
+                     </div>
+                </div>
+                <div class="category">
+                    <div ng-repeat="customer in customers.revenue.types">
+                        <span>{{customer.type}}</span>
+                        <p>{{customer.amount}} <em>{{customers.currency}}</em></p>
+                    </div>
+                </div>
+            </div>
+            <div class="subHeading">
+                <h3>Customer</h3>
+                <div>
+                    <p ng-click="showDiv = !showDiv">Filter</p>
+                    <ul class="filters" ng-show="showDiv">
+                        <li 
+                            ng-repeat="customer in customers.revenue.invoices | unique: 'status'" 
+                            ng-click="select($index)"
+                            ng-class="{active: $index == selected}">
+                            <input type="radio" name="customer" id="{{customer.status}}" 
+                                ng-model="$parent.filtersStatus" value="{{customer.status}}">
+                            <label for="{{customer.status}}">{{customer.status}}</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <table width="100%" cellpadding="5" border="0">
+                <tr ng-repeat="customer in customers.revenue.invoices | filter:{status:filtersStatus} : true">
+                    <td width="60%">
+                        <h4>{{customer.customerName}}</h4>
+                      
+                    </td>
+                    <td width="40%" align="right">
+                        <h4>{{customer.amount}} USD</h4>
+                    </td>
+                </tr>
+            </table>
+        </div> 
+    </div>
+    <footer>
+        <ul>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li class="noRightBorder"><a href="#">Terms of Use</a></li>
+            <li><img src="images/uptake_logo_bottom.jpg" /></li>
+        </ul>
+    </footer>
+    <script src="js/app.js"></script>
+    <script src="js/d3.v4.min.js"></script>
+    <script>
+        var dataset = [
+          { label: 'Sales', aliasLabel: 'A', count: 4000 },
+          { label: 'Rental', aliasLabel: 'B', count: 2600 },
+          { label: 'Parts', aliasLabel: 'C', count: 1000 },
+          { label: 'Labor', aliasLabel: 'D', count: 2400 }
+        ];
+
+        var width = 140;
+        var height = 140;
+        var radius = Math.min(width, height) / 2;
+        var color = 
+            d3.scaleOrdinal().range(["#3366cc", "#990099", "#109618", "#ff9900"]);
+
+        //var color = d3.scaleOrdinal(d3.schemeCategory20b);
+
+        var svg = d3.select('#chart')
+          .append('svg')
+          .attr('width', width)
+          .attr('height', height)
+          .append('g')
+          .attr('transform', 'translate(' + (width / 2) +
+            ',' + (height / 2) + ')');
+
+        var arc = d3.arc()
+            .innerRadius(0)
+            .outerRadius(radius);
+
+        var labelArc = d3.arc()
+            .outerRadius(radius - 40)
+            .innerRadius(radius - 40);
+
+        var pie = d3.pie()
+          .value(function(d) { return d.count; })
+          .sort(null);
+
+          
+
+        var g = 
+            svg.selectAll('arc')
+                .data(pie(dataset))
+                .enter()
+                .append('g')
+                .attr('d', arc)
+                .attr('fill', function(d) {
+                    return color(d.data.label);
+                });
+
+        g.append("path").attr("d", arc).style("fill", function(d) { 
+            return color(d.data.label);
+        });
+
+        g.append("text").attr("transform", function(d) {
+            var pos = [];
+            pos[0] = labelArc.centroid(d)[0] - 10;
+            pos[1] = labelArc.centroid(d)[1]  + 8;
+            return "translate(" + pos + ")"; 
+        }).text(function(d) { 
+            return d.data.aliasLabel;
+        }).style("fill", "#FFF");
+    </script>
+</body>
+</html>

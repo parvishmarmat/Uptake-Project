@@ -140,7 +140,7 @@ public class RevenueServiceImpl implements IRevenueService {
 
 		return monthRevenue;
 	}
-	
+
 	@Override
 	public MonthRevenue quarterRevenueApi(String userId) {
 
@@ -167,8 +167,8 @@ public class RevenueServiceImpl implements IRevenueService {
 		Customer customer = rRepo.findCurrencyByUserid(userId);
 		monthRevenue.setCurrency(customer.getCurrency());
 
-		List<Customer> listOfCustomer = revenueRepository.findCustomersByUserIdAndDate(userId, fDateOfQuarter.toString(),
-				lDateOfQuarter.toString());
+		List<Customer> listOfCustomer = revenueRepository.findCustomersByUserIdAndDate(userId,
+				fDateOfQuarter.toString(), lDateOfQuarter.toString());
 		monthRevenue.setCustomers(listOfCustomer);
 
 		return monthRevenue;
@@ -231,7 +231,14 @@ public class RevenueServiceImpl implements IRevenueService {
 		yearRevenue.setCurrency(customer.getCurrency());
 
 		List<PreviousYear> listPreviousYear = new ArrayList<PreviousYear>();
-		for (int i = 1; i < 3; i++) {
+
+		String smallDate = revenueRepository.findSmallestDateByUserId(userId);
+		Long smallDateLong = Long.parseLong(smallDate);
+		DateTime sDate = new DateTime((long) smallDateLong);
+		int i = 1;
+		int smallYear = sDate.plusYears(i).getYear();
+		while (dateT.getYear() > smallYear) {
+
 			// get first date and last date of the current year (Year-to-Date).
 			PreviousYear previousYear = new PreviousYear();
 
@@ -246,6 +253,7 @@ public class RevenueServiceImpl implements IRevenueService {
 			previousYear.setRevenue(revenueRepository.findRevenueByYear(userId, fUnixDatePreviousYear.toString(),
 					lUnixDatePreviousYear.toString()));
 			listPreviousYear.add(previousYear);
+			smallYear = sDate.plusYears(i++).getYear();
 		}
 		yearRevenue.setPreviousYear(listPreviousYear);
 

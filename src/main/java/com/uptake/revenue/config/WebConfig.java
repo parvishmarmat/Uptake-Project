@@ -12,7 +12,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:8080/InvoiceAndRevenue")
+                .allowedOrigins("http://10.53.236.174:8080/InvoiceAndRevenue")
                 .allowCredentials(false)
                 .maxAge(3600)
                 .allowedHeaders("Accept", "Content-Type", "Origin", "Authorization", "X-Auth-Token")

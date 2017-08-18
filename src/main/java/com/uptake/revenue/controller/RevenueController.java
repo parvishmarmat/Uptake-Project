@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,7 +46,7 @@ public class RevenueController extends BaseController {
 	 * @return Return Login object
 	 * @throws Exception
 	 */
-	// @CrossOrigin(origins = "http://localhost:8080/InvoiceAndRevenue")
+	//@CrossOrigin(origins = "http://localhost:8090/InvoiceAndRevenue/login")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = " Login Page ", response = User.class)
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

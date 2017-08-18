@@ -33,6 +33,4 @@ public class SimpleCORSFilter implements Filter {
     public void destroy() {
       //Not required
     }
-
-	
 }

@@ -77,4 +77,17 @@ public class RevenueRepositoryImpl implements RevenueRepositoryCustom {
 		}
 		return list;
 	}
+	
+	@Override
+	public String findSmallestDateByUserId(String userId) {
+		Aggregation aggType = newAggregation(match(Criteria.where("userid").is(userId)),
+					group(userId).min("date").as("date"));
+		AggregationResults<Customer> result = mongoTemplate.aggregate(aggType, Constants.REVENUE_COLLECTION,
+				Customer.class);
+		List<Customer> list = result.getMappedResults();
+		if (list.isEmpty()) {
+			return null;
+		}
+		return list.get(0).getDate();
+	}
 }
